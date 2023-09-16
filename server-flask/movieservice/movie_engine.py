@@ -1,11 +1,13 @@
 from pathlib import Path
 import pandas as pd
 from .models import Movie
+import random
+import math
 
 cluster_map = {}  # cluster_number --> set of movie ids
 movie_name_map = {}  # list of movie names
 movie_map = {}  # movie_id --> Movie object{movie_id,movie_name,imdb_id,[tags]}
-centroids = None  # Numpy array with centroids
+centroids = []  # Numpy array with centroids
 
 
 def populate_data_tables():
@@ -45,7 +47,6 @@ def populate_data_tables():
 
     centroids = centroid_df.to_numpy()
 
-
     print(f'cluster_map: {len(cluster_map)}')
     print(f'movie_name_map: {len(movie_name_map)}')
     print(f'movie_map: {len(movie_map)}')
@@ -54,14 +55,13 @@ def populate_data_tables():
     print(f'=====>Populated data tables')
 
 
-
 def get_top_20_search_results(search_string=""):
     result = []
     count = 0
     sub_str = search_string.lower()
     for key, value in movie_name_map.items():
-        if sub_str in value:
-            result.append(key)
+        if sub_str in value and key in movie_map:
+            result.append(movie_map[key])
             count += 1
         if count > 20:
             return result
@@ -70,4 +70,65 @@ def get_top_20_search_results(search_string=""):
 
 
 def get_top_similar_movies(movie_id):
-    pass
+    if movie_id not in movie_map.keys():
+        return {}
+
+    selected_movie = movie_map[movie_id]
+    similar_movies = get_top_similar_movies_sub(movie_id)
+
+    return {"selectedMovie": selected_movie, "similarMovies": similar_movies}
+
+
+def get_top_similar_movies_sub(movie_id):
+    minimum_suggestions = 15
+    maximum_suggestions = 50
+    cluster = -1
+
+    for key, value in cluster_map.items():
+        if movie_id in value:
+            cluster = key
+            continue
+
+    if cluster == -1:
+        return []
+
+    if len(cluster_map[cluster]) > minimum_suggestions:
+        movie_ids = random.sample(tuple(cluster_map[cluster]), k=min(maximum_suggestions,len(cluster_map[cluster])))
+        if movie_id in movie_ids: movie_ids.remove(movie_id)
+        movies = list(map(lambda m_id: movie_map[m_id], movie_ids))
+        return movies
+    else:
+        cluster_1, cluster_2 = find_closest_centroids(cluster)
+
+        if len(cluster_map[cluster_1]) + len(cluster_map[cluster]) < minimum_suggestions:
+            cluster_union = cluster_map[cluster_1].union(cluster_map[cluster_2]).union(cluster_map[cluster])
+        else:
+            cluster_union = cluster_map[cluster_1].union(cluster_map[cluster])
+
+        print(f'len of cluster_union {len(cluster_union)}')
+
+        movie_ids = random.sample(tuple(cluster_union), k=min(maximum_suggestions, len(cluster_union)))
+        if movie_id in movie_ids: movie_ids.remove(movie_id)
+        movies = list(map(lambda m_id: movie_map[m_id], movie_ids))
+        return movies
+
+
+def find_closest_centroids(cluster):
+    target_point = centroids[cluster]
+    distances = list(map(lambda centroid: math.dist(centroid,target_point), centroids))
+    distances[cluster] = math.inf
+    smallest_idx = 0
+    second_smallest_idx = 1
+
+    if distances[1] < distances[0]:
+        smallest_idx = 1
+        second_smallest_idx = 0
+
+    for i in range(2, len(distances)):
+        if distances[i] < distances[smallest_idx]:
+            second_smallest_idx = smallest_idx
+            smallest_idx = i
+        elif distances[i] < distances[second_smallest_idx]:
+            second_smallest_idx = i
+    return smallest_idx, second_smallest_idx
+

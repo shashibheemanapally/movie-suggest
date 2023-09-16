@@ -1,7 +1,6 @@
 from flask import Flask, request
 from movieservice import movie_engine
 
-
 app = Flask(__name__)
 
 
@@ -14,13 +13,16 @@ def health():
 def search_movies():
     args = request.args
     search_sub_string = args.get("movie_name", default="", type=str)
-    return movie_engine.get_top_20_search_results(search_sub_string)
+    movie_list = movie_engine.get_top_20_search_results(search_sub_string)
+    return movie_list
 
 
 @app.route('/similar-movies', methods=['GET'])
 def similar_movies():
     args = request.args
-    movie_id = args.get("movie_name", default=0, type=int)
+    movie_id = args.get("movie_id", default=0, type=int)
+    suggested_movies = movie_engine.get_top_similar_movies(movie_id)
+    return suggested_movies
 
 
 #############################################

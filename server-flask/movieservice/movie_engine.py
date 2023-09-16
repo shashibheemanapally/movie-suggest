@@ -93,7 +93,7 @@ def get_top_similar_movies_sub(movie_id):
         return []
 
     if len(cluster_map[cluster]) > minimum_suggestions:
-        movie_ids = random.sample(tuple(cluster_map[cluster]), k=min(maximum_suggestions,len(cluster_map[cluster])))
+        movie_ids = random.sample(tuple(cluster_map[cluster]), k=min(maximum_suggestions, len(cluster_map[cluster])))
         if movie_id in movie_ids: movie_ids.remove(movie_id)
         movies = list(map(lambda m_id: movie_map[m_id], movie_ids))
         return movies
@@ -115,7 +115,7 @@ def get_top_similar_movies_sub(movie_id):
 
 def find_closest_centroids(cluster):
     target_point = centroids[cluster]
-    distances = list(map(lambda centroid: math.dist(centroid,target_point), centroids))
+    distances = list(map(lambda centroid: math.dist(centroid, target_point), centroids))
     distances[cluster] = math.inf
     smallest_idx = 0
     second_smallest_idx = 1
@@ -131,4 +131,3 @@ def find_closest_centroids(cluster):
         elif distances[i] < distances[second_smallest_idx]:
             second_smallest_idx = i
     return smallest_idx, second_smallest_idx
-

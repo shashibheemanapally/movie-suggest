@@ -1,22 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import IMDb from 'imdb-light';
+
+function fetch(id) {
+  return new Promise(function (resolve, reject) {
+          IMDb.fetch(id, (details) => {
+                  resolve(details);
+          });
+  });
+}
+
+async function test(id) {
+  var quote = await fetch(id);
+  console.log(quote.Title);
+}
+
+test('tt7097896');
 
 function App() {
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        Hello World...
       </header>
     </div>
   );

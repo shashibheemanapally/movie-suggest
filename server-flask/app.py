@@ -13,7 +13,8 @@ def health():
 def search_movies():
     args = request.args
     search_sub_string = args.get("movie_name", default="", type=str)
-    movie_list = movie_engine.get_top_20_search_results(search_sub_string)
+    limit = args.get("limit", default=3, type=int)
+    movie_list = movie_engine.get_top_search_results(search_sub_string, limit)
     return movie_list
 
 

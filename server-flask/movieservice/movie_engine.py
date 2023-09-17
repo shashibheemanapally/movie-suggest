@@ -41,7 +41,7 @@ def populate_data_tables():
     for i, movie_row in movies_df.iterrows():
         movie_id = movie_row['movieId']
         movie_name = movie_row['title']
-        imdb_id = ''.join(['tt', str(links_map[movie_row['movieId']])])
+        imdb_id = ''.join(['tt', str(links_map[movie_row['movieId']]).zfill(7)])
         tags = movie_row['genres'].split('|')
         movie_map[movie_id] = Movie(movie_id=movie_id, movie_name=movie_name, imdb_id=imdb_id, tags=tags)
 
@@ -55,7 +55,7 @@ def populate_data_tables():
     print(f'=====>Populated data tables')
 
 
-def get_top_20_search_results(search_string=""):
+def get_top_search_results(search_string="", limit=3):
     result = []
     count = 0
     sub_str = search_string.lower()
@@ -63,7 +63,7 @@ def get_top_20_search_results(search_string=""):
         if sub_str in value and key in movie_map:
             result.append(movie_map[key])
             count += 1
-        if count > 20:
+        if count > limit-1:
             return result
 
     return result

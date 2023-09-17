@@ -9,7 +9,7 @@ movie_name_map = {}  # list of movie names
 movie_map = {}  # movie_id --> Movie object{movie_id,movie_name,imdb_id,[tags]}
 centroids = []  # Numpy array with centroids
 
-recently_searched = LRUCache(3)
+recently_searched = LRUCache(36)
 
 
 def populate_data_tables():
@@ -72,9 +72,10 @@ def get_top_search_results(search_string="", limit=3):
 
 
 def get_top_similar_movies(movie_id):
-    recently_searched.refer(movie_id)
     if movie_id not in movie_map.keys():
         return {}
+
+    recently_searched.refer(movie_id)
 
     selected_movie = movie_map[movie_id]
     similar_movies = get_top_similar_movies_sub(movie_id)
@@ -116,9 +117,9 @@ def get_top_similar_movies_sub(movie_id):
         return movies
 
 
-def get_recently_searched():
+def get_recently_searched(limit):
     movies = list(map(lambda m_id: movie_map[m_id], recently_searched.dq))
-    return movies
+    return movies[0:min(limit, len(movies))]
 
 
 def find_closest_centroids(cluster):

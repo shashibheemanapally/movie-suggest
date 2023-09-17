@@ -28,7 +28,9 @@ def similar_movies():
 
 @app.route('/recent-searches', methods=['GET'])
 def recent_searches():
-    recently_searched_movies = movie_engine.get_recently_searched()
+    args = request.args
+    limit = args.get("limit", default=12, type=int)
+    recently_searched_movies = movie_engine.get_recently_searched(limit)
     return recently_searched_movies
 
 

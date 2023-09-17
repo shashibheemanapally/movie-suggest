@@ -1,5 +1,3 @@
-import json
-
 
 class Movie(dict):
     def __init__(self, movie_id=-1, movie_name="", imdb_id=-1, tags=None):

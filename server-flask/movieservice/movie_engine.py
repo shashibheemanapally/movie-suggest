@@ -1,8 +1,8 @@
 from pathlib import Path
 import pandas as pd
 from .models import Movie, LRUCache
-import random
 import math
+from functools import cmp_to_key
 
 cluster_map = {}  # cluster_number --> set of movie ids
 movie_name_map = {}  # list of movie names
@@ -84,7 +84,7 @@ def get_top_similar_movies(movie_id):
 
 
 def get_top_similar_movies_sub(movie_id):
-    minimum_suggestions = 15
+    minimum_suggestions = 16
     maximum_suggestions = 50
     cluster = -1
 
@@ -96,11 +96,20 @@ def get_top_similar_movies_sub(movie_id):
     if cluster == -1:
         return []
 
+    print(f'Size of chosen movie cluster is {len(cluster_map[cluster])}')
+
     if len(cluster_map[cluster]) > minimum_suggestions:
-        movie_ids = random.sample(tuple(cluster_map[cluster]), k=min(maximum_suggestions, len(cluster_map[cluster])))
+        movie_ids = list(cluster_map[cluster])
         if movie_id in movie_ids: movie_ids.remove(movie_id)
         movies = list(map(lambda m_id: movie_map[m_id], movie_ids))
-        return movies
+        target_tags = movie_map[movie_id]['tags']
+
+        def compare(item1, item2):
+            res1 = len(set(item1['tags']) & set(target_tags))
+            res2 = len(set(item2['tags']) & set(target_tags))
+            return res2 - res1
+
+        return sorted(movies, key=cmp_to_key(compare))[:min(maximum_suggestions, len(movies))]
     else:
         cluster_1, cluster_2 = find_closest_centroids(cluster)
 
@@ -109,17 +118,24 @@ def get_top_similar_movies_sub(movie_id):
         else:
             cluster_union = cluster_map[cluster_1].union(cluster_map[cluster])
 
-        print(f'len of cluster_union {len(cluster_union)}')
+        print(f'Size of cluster union is {len(cluster_union)}')
 
-        movie_ids = random.sample(tuple(cluster_union), k=min(maximum_suggestions, len(cluster_union)))
+        movie_ids = list(cluster_union)
         if movie_id in movie_ids: movie_ids.remove(movie_id)
         movies = list(map(lambda m_id: movie_map[m_id], movie_ids))
-        return movies
+        target_tags = movie_map[movie_id]['tags']
+
+        def compare(item1, item2):
+            res1 = len(set(item1['tags']) & set(target_tags))
+            res2 = len(set(item2['tags']) & set(target_tags))
+            return res2 - res1
+
+        return sorted(movies, key=cmp_to_key(compare))[:min(maximum_suggestions, len(movies))]
 
 
 def get_recently_searched(limit):
     movies = list(map(lambda m_id: movie_map[m_id], recently_searched.dq))
-    return movies[0:min(limit, len(movies))]
+    return movies[:min(limit, len(movies))]
 
 
 def find_closest_centroids(cluster):

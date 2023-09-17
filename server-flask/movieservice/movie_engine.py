@@ -1,6 +1,6 @@
 from pathlib import Path
 import pandas as pd
-from .models import Movie
+from .models import Movie, LRUCache
 import random
 import math
 
@@ -8,6 +8,8 @@ cluster_map = {}  # cluster_number --> set of movie ids
 movie_name_map = {}  # list of movie names
 movie_map = {}  # movie_id --> Movie object{movie_id,movie_name,imdb_id,[tags]}
 centroids = []  # Numpy array with centroids
+
+recently_searched = LRUCache(3)
 
 
 def populate_data_tables():
@@ -63,13 +65,14 @@ def get_top_search_results(search_string="", limit=3):
         if sub_str in value and key in movie_map:
             result.append(movie_map[key])
             count += 1
-        if count > limit-1:
+        if count > limit - 1:
             return result
 
     return result
 
 
 def get_top_similar_movies(movie_id):
+    recently_searched.refer(movie_id)
     if movie_id not in movie_map.keys():
         return {}
 
@@ -111,6 +114,11 @@ def get_top_similar_movies_sub(movie_id):
         if movie_id in movie_ids: movie_ids.remove(movie_id)
         movies = list(map(lambda m_id: movie_map[m_id], movie_ids))
         return movies
+
+
+def get_recently_searched():
+    movies = list(map(lambda m_id: movie_map[m_id], recently_searched.dq))
+    return movies
 
 
 def find_closest_centroids(cluster):

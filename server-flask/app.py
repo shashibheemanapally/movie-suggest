@@ -26,6 +26,12 @@ def similar_movies():
     return suggested_movies
 
 
+@app.route('/recent-searches', methods=['GET'])
+def recent_searches():
+    recently_searched_movies = movie_engine.get_recently_searched()
+    return recently_searched_movies
+
+
 #############################################
 
 if __name__ == '__main__':

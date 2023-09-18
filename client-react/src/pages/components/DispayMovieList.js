@@ -2,7 +2,6 @@ import Movie from "./Movie";
 
 function DispayMovieList(props) {
   
-     
 
     return (
         <>

@@ -1,7 +1,9 @@
 from flask import Flask, request
 from movieservice import movie_engine
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/health")

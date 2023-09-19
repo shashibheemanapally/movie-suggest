@@ -1,3 +1,5 @@
+import threading
+
 
 class Movie(dict):
     def __init__(self, movie_id=-1, movie_name="", imdb_id=-1, tags=None):
@@ -6,19 +8,26 @@ class Movie(dict):
         dict.__init__(self, movie_id=movie_id, movie_name=movie_name, imdb_id=imdb_id, tags=tags)
 
 
-class LRUCache:
-    def __init__(self, n):
-        self.cache_size = n
+class SimpleLRU:
+    def __init__(self, capacity):
+        self.capacity = capacity
         self.dq = []
-        self.ma = {}
+        self.lock = threading.Lock()
 
-    def refer(self, x):
-        if x not in self.ma.keys():
-            if len(self.dq) == self.cache_size:
-                last = self.dq[-1]
-                ele = self.dq.pop()
-                del self.ma[last]
-        else:
-            del self.dq[self.ma[x]]
-        self.dq.insert(0, x)
-        self.ma[x] = 0;
+    def get_cache(self, n):
+        with self.lock:
+            if n > self.capacity:
+                return self.dq[::-1]
+            return self.dq[:-n:-1]
+
+    def refer(self, num):
+        with self.lock:
+            if num in self.dq:
+                self.dq.remove(num)
+                self.dq.append(num)
+                return
+
+            if len(self.dq) >= self.capacity:
+                self.dq.pop(0)
+            self.dq.append(num)
+            print(f'cache size is {len(self.dq)}')

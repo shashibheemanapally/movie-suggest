@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DispayMovieList from "./components/DispayMovieList";
 import { useRef } from "react";
+import {motion} from 'framer-motion'
+
 
 
 function Home() {
@@ -59,7 +61,7 @@ function Home() {
   
     return (
         <>
-        <div className="Home">
+        <motion.div layout className="Home">
             <div className="logo-div">
                 <h3>Logo</h3>
             </div>
@@ -67,14 +69,14 @@ function Home() {
                 <input type='text' placeholder="Enter a movie that you liked..."value={searchItem} ref={inputRef} onChange={(e) => setSearchItem(e.target.value)}></input>
             </div>
 
-            <div className="search-results-div">
+            <div className="movie-list-with-heading-div">
                 <DispayMovieList heading={"Search results:"} movieList={searchResults}></DispayMovieList>
             </div>
             
-            <div className="recent-searches-div">
+            <div className="movie-list-with-heading-div">
                 <DispayMovieList heading={"People recently searched for:"} movieList={recentSearches}></DispayMovieList>
             </div>     
-        </div>
+        </motion.div>
         </>
     );
   }

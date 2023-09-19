@@ -2,10 +2,12 @@ import { tmdb_key} from '../TmdbService'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {motion} from 'framer-motion'
 
 function Movie(props) {
 
     const [movieData, setMovieData] = useState({ title: '', posterPath: '' ,});
+    
 
     useEffect(() => {
       async function fetchData() {
@@ -31,25 +33,26 @@ function Movie(props) {
     
     const navigate = useNavigate()
     const suggestMovies = (movieId) => {
-        navigate('/movie-seggestions', {
-            state: {
-                movieId: movieId
-            }
-        });
+        navigate(`/movie-seggestions/${movieId}`,);
     };
 
     return (
         
-        <div className='movie' onClick={()=>{suggestMovies(props.movie.movie_id)}}>
+        <motion.div 
+        animate = {{opacity:1}} 
+             initial = {{opacity:0}}
+             exit = {{opacity:0}}
+             transition={{duration:0.1}}
+             layout className='movie' onClick={()=>{suggestMovies(props.movie.movie_id)}}>
           {movieData.title && movieData.posterPath ? (
             <div>
-              <img className='clickable-item' src={movieData.posterPath} alt={`Poster for ${movieData.title}`} loading="lazy" />
+              <img className='clickable-item' src={movieData.posterPath} alt={`Poster for ${movieData.title}`} />
               <h5 className='movie-name clickable-item'>{movieData.title}</h5>
             </div>
           ) : (
             <p></p>
           )}
-        </div>
+        </motion.div>
       );
   }
   

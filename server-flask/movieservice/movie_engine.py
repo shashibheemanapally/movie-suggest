@@ -1,6 +1,6 @@
 from pathlib import Path
 import pandas as pd
-from .models import Movie, LRUCache
+from .models import Movie, SimpleLRU
 import math
 from functools import cmp_to_key
 
@@ -9,7 +9,7 @@ movie_name_map = {}  # list of movie names
 movie_map = {}  # movie_id --> Movie object{movie_id,movie_name,imdb_id,[tags]}
 centroids = []  # Numpy array with centroids
 
-recently_searched = LRUCache(36)
+recently_searched = SimpleLRU(capacity=30)
 
 
 def populate_data_tables():
@@ -86,8 +86,8 @@ def get_top_similar_movies(movie_id):
 
 
 def get_top_similar_movies_sub(movie_id):
-    minimum_suggestions = 16
-    maximum_suggestions = 50
+    minimum_suggestions = 10
+    maximum_suggestions = 40
     cluster = -1
 
     for key, value in cluster_map.items():
@@ -136,8 +136,8 @@ def get_top_similar_movies_sub(movie_id):
 
 
 def get_recently_searched(limit):
-    movies = list(map(lambda m_id: movie_map[m_id], recently_searched.dq))
-    return movies[:min(limit, len(movies))]
+    movies = list(map(lambda m_id: movie_map[m_id], recently_searched.get_cache(limit+1)))
+    return movies
 
 
 def find_closest_centroids(cluster):

@@ -59,6 +59,8 @@ def populate_data_tables():
 
 def get_top_search_results(search_string="", limit=3):
     result = []
+    if len(search_string) == 0:
+        return result
     count = 0
     sub_str = search_string.lower()
     for key, value in movie_name_map.items():

@@ -1,38 +1,69 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo-div {
+  text-align: left;
+  margin: 0% -5%
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+.search-bar-div {
+  text-align: left;
+  margin: 0% -5%
+}
+
+
+body {
+  background-color: black;
+  font-family: 'Comic Neue', cursive;
+  color: rgb(255, 255, 255);
+  margin: 1% 15%
+}
+
+input {
+  font: inherit;
+  padding: 6px 12px;
+  background: rgb(31, 32, 35);
+  border: 1px solid rgb(60, 63, 68);
+  border-radius: 4px;
+  font-size: 13px;
+  color: rgb(247, 248, 248);
+  height: 24px;
+  width: 300px;
+  appearance: none;
+  transition: border 0.15s ease 0s;
+  :focus{
+      outline: none;
+      box-shadow: none;
+      border-color: rgb(100, 153, 255);
   }
+
+  
+}
+img {
+  margin-bottom: 0%;
+  border-radius: 4px;
+  object-fit: cover;
+}
+  
+
+.display-movies-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.movie-name {
+  margin-top: 1%;
 }
 
-.App-link {
-  color: #61dafb;
+.display-movies-heading {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.clickable-item:hover {
+  cursor: pointer;
 }
+
+

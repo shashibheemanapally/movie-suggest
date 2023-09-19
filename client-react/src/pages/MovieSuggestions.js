@@ -5,7 +5,7 @@ function MovieSuggestions() {
     const location = useLocation();
 
     return (
-      <h1>Movie suggestions for id {location.state.id}</h1>
+      <h1>Movie suggestions for id {location.state.movieId}</h1>
     );
   }
   

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DispayMovieList from "./components/DispayMovieList";
 import { useRef } from "react";
+
 
 function Home() {
 
@@ -23,7 +23,7 @@ function Home() {
     const [searchResults, setSearchResults] = useState([])
 
     const fetchSearchResults = async () => {
-        const res = await axios.get(`http://localhost:5000/search-movies?movie_name=${searchItem}&limit=5`);
+        const res = await axios.get(`http://192.168.100.6:5000/search-movies?movie_name=${searchItem}&limit=10`);
         setSearchResults(res.data)
     };
 
@@ -44,7 +44,7 @@ function Home() {
     const [recentSearches, setRecentSearches] = useState([])
 
     const fetchRecentResults = async () => {
-        const res = await axios.get(`http://localhost:5000/recent-searches?limit=5`);
+        const res = await axios.get(`http://192.168.100.6:5000/recent-searches?limit=15`);
         setRecentSearches(res.data)
     };
 
@@ -55,26 +55,25 @@ function Home() {
 
     
 
-    const navigate = useNavigate()
-    const openMovie = (id) => {
-        navigate('/movie-seggestions', {
-            state: {
-                id: id
-            }
-        });
-    };
+    
   
     return (
         <>
         <div className="Home">
+            <div className="logo-div">
+                <h3>Logo</h3>
+            </div>
+            <div className="search-bar-div">
+                <input type='text' placeholder="Enter a movie that you liked..."value={searchItem} ref={inputRef} onChange={(e) => setSearchItem(e.target.value)}></input>
+            </div>
+
+            <div className="search-results-div">
+                <DispayMovieList heading={"Search results:"} movieList={searchResults}></DispayMovieList>
+            </div>
             
-            <input type='text' value={searchItem} ref={inputRef} onChange={(e) => setSearchItem(e.target.value)}></input>
-            <DispayMovieList heading={"search results"} movieList={searchResults}></DispayMovieList>
-            
-            <DispayMovieList heading={"recently searched movies"} movieList={recentSearches}></DispayMovieList>
-            
-            
-            
+            <div className="recent-searches-div">
+                <DispayMovieList heading={"People recently searched for:"} movieList={recentSearches}></DispayMovieList>
+            </div>     
         </div>
         </>
     );

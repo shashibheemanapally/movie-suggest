@@ -63,7 +63,8 @@ function Home() {
         <>
         <motion.div layout className="Home">
             <div className="logo-div">
-                <h3>Logo</h3>
+                <span class="material-symbols-outlined">movie</span>
+                <h3>MovieSuggest</h3>
             </div>
             <div className="search-bar-div">
                 <input type='text' placeholder="Enter a movie that you liked..."value={searchItem} ref={inputRef} onChange={(e) => setSearchItem(e.target.value)}></input>

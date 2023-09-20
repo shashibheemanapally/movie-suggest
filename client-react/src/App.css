@@ -3,7 +3,15 @@
 }
 .logo-div {
   text-align: left;
-  margin: 0% -5%
+  margin: 0% -5%;
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-div span{
+  margin-right: 0.25%;
+  margin-top: 0.4%;
+  font-size: 40px
 }
 
 
@@ -17,7 +25,7 @@ body {
   background-color: black;
   font-family: 'Comic Neue', cursive;
   color: rgb(255, 255, 255);
-  margin: 1% 15%
+  margin: .5% 15%
 }
 
 input {
@@ -65,5 +73,63 @@ img {
 .clickable-item:hover {
   cursor: pointer;
 }
+
+.movie-poster-div {
+  display: flex;
+  align-items: center;
+  border: 2px solid #373B44;
+  border-radius: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.movie-poster-info-div {
+  text-align: left;
+  padding-left: 30px;
+  
+}
+
+
+
+
+/* CSS */
+.button-89 {
+  --b: 2px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  background: var(--color);
+  color: #fff;
+}
+
+
 
 

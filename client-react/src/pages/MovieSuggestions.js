@@ -40,7 +40,11 @@ function MovieSuggestions() {
 
     return (
       <motion.div layout>
-        <MoviePoster selectedMovie={movieData.selectedMovie}></MoviePoster>
+        <div className="logo-div">
+            <span class="material-symbols-outlined">movie</span>
+            <h3>MovieSuggest</h3>
+        </div>
+        <MoviePoster movie={movieData.selectedMovie}></MoviePoster>
         <div className="movie-list-with-heading-div">
             <DispayMovieList heading={"People who liked this movie also liked:"} movieList={movieData.similarMovies}></DispayMovieList>
         </div>   

@@ -30,4 +30,4 @@ class SimpleLRU:
             if len(self.dq) >= self.capacity:
                 self.dq.pop(0)
             self.dq.append(num)
-            print(f'cache size is {len(self.dq)}')
+

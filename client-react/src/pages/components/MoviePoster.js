@@ -57,8 +57,8 @@ function MoviePoster(props) {
               <p>{movieData.overview}</p>
               <div className='movie-tags-container-div'>
               {
-                props.movie.tags.map((tag) => {
-                  return <h5>{tag}</h5>
+                props.movie.tags.map((tag,i) => {
+                  return <h5 key={i}>{tag}</h5>
                 })
               }
               </div>

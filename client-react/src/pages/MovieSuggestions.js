@@ -43,17 +43,24 @@ function MovieSuggestions() {
     const redirectToHome = () => {
         navigate('/');
     };
+    const redirectToAbout = () => {
+      navigate('/about');
+    };
 
     return (
-      <motion.div layout>
+      <motion.div 
+      initial={{ opacity: 0, x: 200 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}>
         <div className="logo-div clickable-item" onClick={()=>{redirectToHome()}}>
-            <span class="material-symbols-outlined">movie</span>
+            <span className="material-symbols-outlined">movie</span>
             <h3>MovieSuggest</h3>
         </div>
         <MoviePoster movie={movieData.selectedMovie}></MoviePoster>
         <div className="movie-list-with-heading-div">
             <DispayMovieList heading={"People who liked this movie also liked:"} movieList={movieData.similarMovies}></DispayMovieList>
         </div>   
+        <div className="about-button-div"><h2 className="clickable-item" onClick={()=>{redirectToAbout()}}>About...</h2></div> 
       </motion.div>
     );
   }

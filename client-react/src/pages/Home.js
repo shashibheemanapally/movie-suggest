@@ -14,7 +14,7 @@ function Home() {
             return localStorage.getItem("searchItem")
           }
         else{
-            let arr = ["Titanic", "Interstellar","Shawshank Redemption", "Godfather"];
+            let arr = ["Gravity","The Revenant", "Interstellar", "Godfather"];
             return arr[(Math.floor(Math.random() * arr.length))];
         }
     });
@@ -48,7 +48,8 @@ function Home() {
 
     const fetchRecentResults = async () => {
         const res = await axios.get(`http://192.168.100.6:5000/recent-searches?limit=15`);
-        setRecentSearches(res.data)
+        setTimeout(()=>{setRecentSearches(res.data)},500)
+        
     };
 
     useEffect(()=>{
@@ -59,15 +60,23 @@ function Home() {
     const redirectToHome = () => {
         navigate('/');
     };
+
+    const redirectToAbout = () => {
+        navigate('/about');
+      };
     
 
     
   
     return (
         <>
-        <motion.div layout className="Home">
+        <motion.div 
+        initial={{ opacity: 0, x: -200 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+         className="Home">
             <div className="logo-div clickable-item" onClick={()=>{redirectToHome()}}>
-                <span class="material-symbols-outlined">movie</span>
+                <span className="material-symbols-outlined">movie</span>
                 <h3>MovieSuggest</h3>
             </div>
             <div className="search-bar-div">
@@ -80,7 +89,8 @@ function Home() {
             
             <div className="movie-list-with-heading-div">
                 <DispayMovieList heading={"People recently searched for:"} movieList={recentSearches}></DispayMovieList>
-            </div>     
+            </div>
+            <div className="about-button-div"><h2 className="clickable-item" onClick={()=>{redirectToAbout()}}>About...</h2></div> 
         </motion.div>
         </>
     );

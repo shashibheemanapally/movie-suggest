@@ -141,6 +141,23 @@ img {
   color: #fff;
 }
 
+.movie-tags-container-div {
+  display: contents;
+  justify-content: flex-start;
+}
+
+.movie-tags-container-div h5{
+  display: inline-block;
+  margin-top: 1px; 
+  margin-bottom: 1px; 
+  margin-right: 2px; 
+  margin-left: 2px; 
+  padding: 5px; 
+  background: #373B44;
+  border-radius: 12px;
+}
+
+
 
 
 

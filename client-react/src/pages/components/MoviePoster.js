@@ -55,6 +55,14 @@ function MoviePoster(props) {
             <div className='movie-poster-info-div'>
               <h2>{movieData.title}</h2>
               <p>{movieData.overview}</p>
+              <div className='movie-tags-container-div'>
+              {
+                props.movie.tags.map((tag) => {
+                  return <h5>{tag}</h5>
+                })
+              }
+              </div>
+              
               <h3>{movieData.release_date}</h3>
               <button className='button-89 clickable-item' onClick={() => {redirectToGoogleSearch(movieData.title,movieData.release_date)}}>More</button>
             </div>

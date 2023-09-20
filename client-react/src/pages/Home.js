@@ -3,6 +3,7 @@ import axios from "axios";
 import DispayMovieList from "./components/DispayMovieList";
 import { useRef } from "react";
 import {motion} from 'framer-motion'
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -54,7 +55,10 @@ function Home() {
         fetchRecentResults()
     }, [])
     
-
+    const navigate = useNavigate()
+    const redirectToHome = () => {
+        navigate('/');
+    };
     
 
     
@@ -62,7 +66,7 @@ function Home() {
     return (
         <>
         <motion.div layout className="Home">
-            <div className="logo-div">
+            <div className="logo-div clickable-item" onClick={()=>{redirectToHome()}}>
                 <span class="material-symbols-outlined">movie</span>
                 <h3>MovieSuggest</h3>
             </div>

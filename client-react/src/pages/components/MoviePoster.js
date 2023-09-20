@@ -56,7 +56,7 @@ function MoviePoster(props) {
               <h2>{movieData.title}</h2>
               <p>{movieData.overview}</p>
               <h3>{movieData.release_date}</h3>
-              <button className='button-89' onClick={() => {redirectToGoogleSearch(movieData.title,movieData.release_date)}}>More</button>
+              <button className='button-89 clickable-item' onClick={() => {redirectToGoogleSearch(movieData.title,movieData.release_date)}}>More</button>
             </div>
             
         </div>          

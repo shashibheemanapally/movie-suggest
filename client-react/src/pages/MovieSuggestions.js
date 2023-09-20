@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import MoviePoster from "./components/MoviePoster";
 import DispayMovieList from "./components/DispayMovieList";
 import {motion} from 'framer-motion'
+import { useNavigate } from "react-router-dom";
 
 
 function MovieSuggestions() {
@@ -38,9 +39,14 @@ function MovieSuggestions() {
       window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
     }, [params.movieId]);
 
+    const navigate = useNavigate()
+    const redirectToHome = () => {
+        navigate('/');
+    };
+
     return (
       <motion.div layout>
-        <div className="logo-div">
+        <div className="logo-div clickable-item" onClick={()=>{redirectToHome()}}>
             <span class="material-symbols-outlined">movie</span>
             <h3>MovieSuggest</h3>
         </div>

@@ -75,19 +75,30 @@ img {
 }
 
 .movie-poster-div {
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* align-items: inherit; */
   border: 2px solid #373B44;
   border-radius: 12px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  
+  display: grid;
+  grid-template-columns: 0.5fr 2fr; /* Two equal-width columns */
+  gap: 10px; /* Optional gap between items */
+}
+
+@media (max-width: 1080px) {
+  .movie-poster-div {
+    grid-template-columns: 1fr; /* Single column for mobile */
+  }
 }
 
 .movie-poster-info-div {
   text-align: left;
-  padding-left: 30px;
+  padding-left: 0px;
   
 }
 

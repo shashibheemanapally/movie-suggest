@@ -34,7 +34,7 @@ function About() {
                     <strong className='about-strong'> movie recommendation engine </strong>
                     backed by
                     <strong className='about-strong'> AI and Machine Learning Models </strong>
-                    trained with real world dataset of movie reveiws provided by real world users.
+                    trained with real world dataset of movie reveiws (popular movies until 2018) provided by real world users.
                 </h3>
                 <div><h1>. . .</h1></div>
                 <h3>It's about 

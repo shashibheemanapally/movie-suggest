@@ -1,4 +1,4 @@
-import axios from "axios";
+
 
 const tmdb_keys = [
     'fb7bb23f03b6994dafc674c074d01761',

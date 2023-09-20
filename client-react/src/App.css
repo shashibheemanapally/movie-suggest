@@ -2,13 +2,14 @@
   text-align: center;
 }
 .logo-div {
-  text-align: left;
+  text-align: center;
   margin: 0% -5%;
   display: flex;
   flex-direction: row;
 }
 
 .logo-div span{
+  text-align: center;
   margin-right: 0.25%;
   margin-top: 0.4%;
   font-size: 40px
@@ -16,8 +17,9 @@
 
 
 .search-bar-div {
-  text-align: left;
+  text-align: center;
   margin: 0% -5%
+  
 }
 
 
@@ -37,7 +39,7 @@ input {
   font-size: 20px;
   color: rgb(247, 248, 248);
   height: 24px;
-  width: 300px;
+  width: 500px;
   appearance: none;
   transition: border 0.15s ease 0s;
   :focus{
@@ -45,9 +47,16 @@ input {
       box-shadow: none;
       border-color: rgb(100, 153, 255);
   }
-
+  
   
 }
+
+@media (max-width: 1080px) {
+  input {
+    width: 300px;
+  }
+}
+
 img {
   margin-bottom: 0%;
   border-radius: 4px;

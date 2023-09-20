@@ -5,6 +5,7 @@ import MoviePoster from "./components/MoviePoster";
 import DispayMovieList from "./components/DispayMovieList";
 import {motion} from 'framer-motion'
 import { useNavigate } from "react-router-dom";
+import { movieSuggestEngineApiHost } from "./Constants";
 
 
 function MovieSuggestions() {
@@ -17,7 +18,7 @@ function MovieSuggestions() {
     });
   
     useEffect(() => {
-      const apiUrl = `http://192.168.100.6:5000/similar-movies?movie_id=${params.movieId}`;
+      const apiUrl = `${movieSuggestEngineApiHost}/similar-movies?movie_id=${params.movieId}`;
   
       async function fetchMovieData() {
         try {

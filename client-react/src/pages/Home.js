@@ -4,6 +4,7 @@ import DispayMovieList from "./components/DispayMovieList";
 import { useRef } from "react";
 import {motion} from 'framer-motion'
 import { useNavigate } from "react-router-dom";
+import { movieSuggestEngineApiHost } from "./Constants";
 
 
 
@@ -26,7 +27,7 @@ function Home() {
     const [searchResults, setSearchResults] = useState([])
 
     const fetchSearchResults = async () => {
-        const res = await axios.get(`http://192.168.100.6:5000/search-movies?movie_name=${searchItem}&limit=10`);
+        const res = await axios.get(`${movieSuggestEngineApiHost}/search-movies?movie_name=${searchItem}&limit=10`);
         setSearchResults(res.data)
     };
 
@@ -47,7 +48,7 @@ function Home() {
     const [recentSearches, setRecentSearches] = useState([])
 
     const fetchRecentResults = async () => {
-        const res = await axios.get(`http://192.168.100.6:5000/recent-searches?limit=15`);
+        const res = await axios.get(`${movieSuggestEngineApiHost}/recent-searches?limit=15`);
         setTimeout(()=>{setRecentSearches(res.data)},500)
         
     };
@@ -80,7 +81,7 @@ function Home() {
                 <h3>MovieSuggest</h3>
             </div>
             <div className="search-bar-div">
-                <input type='text' placeholder="Enter a movie that you liked..."value={searchItem} ref={inputRef} onChange={(e) => setSearchItem(e.target.value)}></input>
+                <input type='text' spellCheck='false' placeholder="Enter a movie that you liked..."value={searchItem} ref={inputRef} onChange={(e) => setSearchItem(e.target.value)}></input>
             </div>
 
             <div className="movie-list-with-heading-div">

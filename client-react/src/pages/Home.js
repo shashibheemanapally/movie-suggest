@@ -4,7 +4,7 @@ import DispayMovieList from "./components/DispayMovieList";
 import { useRef } from "react";
 import {motion} from 'framer-motion'
 import { useNavigate } from "react-router-dom";
-import { movieSuggestEngineApiHost } from "./Constants";
+import { movieSuggestEngineApiUrl } from "./Constants";
 
 
 
@@ -27,7 +27,7 @@ function Home() {
     const [searchResults, setSearchResults] = useState([])
 
     const fetchSearchResults = async () => {
-        const res = await axios.get(`${movieSuggestEngineApiHost}/search-movies?movie_name=${searchItem}&limit=10`);
+        const res = await axios.get(`${movieSuggestEngineApiUrl}/search-movies?movie_name=${searchItem}&limit=10`);
         setSearchResults(res.data)
     };
 
@@ -48,7 +48,7 @@ function Home() {
     const [recentSearches, setRecentSearches] = useState([])
 
     const fetchRecentResults = async () => {
-        const res = await axios.get(`${movieSuggestEngineApiHost}/recent-searches?limit=15`);
+        const res = await axios.get(`${movieSuggestEngineApiUrl}/recent-searches?limit=15`);
         setTimeout(()=>{setRecentSearches(res.data)},500)
         
     };

@@ -37,7 +37,7 @@ function MoviePoster(props) {
       
       let relDate = release_date;
       const dateArray = release_date.split("-");
-      if(dateArray.length != 0 && dateArray[0].length==4){
+      if(dateArray.length !== 0 && dateArray[0].length===4){
         relDate = dateArray[0]
       }
       let searchString = `${title} ${relDate}`

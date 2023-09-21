@@ -44,7 +44,7 @@ function About() {
                 <strong className='about-strong'> Not about Similar Genres. </strong>
                 </h3>
                 <div  className='cluster-img-div'>
-                    <img src={process.env.PUBLIC_URL + '/clustering-image.jpeg' } ></img>
+                    <img src={process.env.PUBLIC_URL + '/clustering-image.jpeg' } alt='clustering-image'></img>
                 </div>
                 
                 <div><h1>. . .</h1></div>
@@ -57,7 +57,7 @@ function About() {
                     <hr></hr>
                     <h2><strong className='about-strong'>Movie images are provided by:</strong> The Movie Db</h2>
                     <img className='clickable-item' onClick={()=>{redirectToTmdb()}} 
-                    src={process.env.PUBLIC_URL + '/tmdb-logo.svg'} max-width="100%" height="auto"></img>
+                    src={process.env.PUBLIC_URL + '/tmdb-logo.svg'} alt='tmdb-logo' max-width="100%" height="auto"></img>
                     <hr></hr>
                     
                 </div>

@@ -46,8 +46,6 @@ function MoviePoster(props) {
     };
 
 
-
-    const isImageLoaded = true
     return (
         <>
         <div className='movie-poster-div'>

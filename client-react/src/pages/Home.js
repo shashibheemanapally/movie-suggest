@@ -78,7 +78,8 @@ function Home() {
          className="Home">
             <div className="logo-div clickable-item" onClick={()=>{redirectToHome()}}>
                 <span className="material-symbols-outlined">movie</span>
-                <h3>MovieSuggest</h3>
+                <h2>MovieSuggest</h2>
+                <h5>AI powered</h5>
             </div>
             <div className="search-bar-div">
                 <input type='text' spellCheck='false' placeholder="Enter a movie that you liked..."value={searchItem} ref={inputRef} onChange={(e) => setSearchItem(e.target.value)}></input>

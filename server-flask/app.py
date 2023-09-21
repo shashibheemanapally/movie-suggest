@@ -40,4 +40,4 @@ def recent_searches():
 
 if __name__ == '__main__':
     movie_engine.populate_data_tables()
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8080)

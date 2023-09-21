@@ -1,19 +1,33 @@
 .App {
   text-align: center;
 }
-.logo-div {
+
+.logo-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+/* .logo-div {
   text-align: center;
   margin: 0% -5%;
   display: flex;
   flex-direction: row;
-}
+} */
 
 .logo-div span{
-  text-align: center;
-  margin-right: 0.25%;
-  margin-top: 0.4%;
-  font-size: 40px
+
+
 }
+
+.logo-div h2{
+  margin-left: 0.25%;
+
+}
+.logo-div h5{
+  color: #ff6d38;
+  margin-left: 1%;
+}
+
 
 
 .search-bar-div {
@@ -174,6 +188,7 @@ img {
 .about-button-div {
   margin-bottom: 10%;
   margin-top: 5%;
+  color: #ff6d38;
 }
 
 

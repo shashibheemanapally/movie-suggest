@@ -54,8 +54,9 @@ function MovieSuggestions() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}>
         <div className="logo-div clickable-item" onClick={()=>{redirectToHome()}}>
-            <span className="material-symbols-outlined">movie</span>
-            <h3>MovieSuggest</h3>
+                <span className="material-symbols-outlined">movie</span>
+                <h2>MovieSuggest</h2>
+                <h5>AI powered</h5>
         </div>
         <MoviePoster movie={movieData.selectedMovie}></MoviePoster>
         <div className="movie-list-with-heading-div">

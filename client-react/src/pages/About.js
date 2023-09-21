@@ -27,7 +27,8 @@ function About() {
                 className='about-div'>
                 <div className="logo-div clickable-item" onClick={()=>{redirectToHome()}}>
                     <span className="material-symbols-outlined">movie</span>
-                    <h3>MovieSuggest</h3>
+                    <h2>MovieSuggest</h2>
+                    <h5>AI powered</h5>
                 </div>
                 <h1>About...</h1>
                 <h3>MovieSuggest is a                 

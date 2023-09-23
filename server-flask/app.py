@@ -6,12 +6,12 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/health")
+@app.route("/")
 def health():
-    return "Okay!"
+    return "ok"
 
 
-@app.route('/search-movies', methods=['GET'])
+@app.route('/api/search-movies', methods=['GET'])
 def search_movies():
     args = request.args
     search_sub_string = args.get("movie_name", default="", type=str)
@@ -20,7 +20,7 @@ def search_movies():
     return movie_list
 
 
-@app.route('/similar-movies', methods=['GET'])
+@app.route('/api/similar-movies', methods=['GET'])
 def similar_movies():
     args = request.args
     movie_id = args.get("movie_id", default=0, type=int)
@@ -28,7 +28,7 @@ def similar_movies():
     return suggested_movies
 
 
-@app.route('/recent-searches', methods=['GET'])
+@app.route('/api/recent-searches', methods=['GET'])
 def recent_searches():
     args = request.args
     limit = args.get("limit", default=12, type=int)
@@ -40,4 +40,4 @@ def recent_searches():
 
 if __name__ == '__main__':
     movie_engine.populate_data_tables()
-    app.run(host='0.0.0.0', port=8080)
+    app.run(debug=True, port=8080)

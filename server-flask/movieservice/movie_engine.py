@@ -3,6 +3,10 @@ import pandas as pd
 from .models import Movie, SimpleLRU
 import math
 from functools import cmp_to_key
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 cluster_map = {}  # cluster_number --> set of movie ids
 movie_name_map = {}  # list of movie names
@@ -13,7 +17,7 @@ recently_searched = SimpleLRU(capacity=30)
 
 
 def populate_data_tables():
-    print(f'=====>Populating data tables')
+    logger.info(f'=====>Populating data tables')
     global cluster_map
     global movie_name_map
     global movie_map
@@ -49,12 +53,14 @@ def populate_data_tables():
 
     centroids = centroid_df.to_numpy()
 
-    print(f'cluster_map: {len(cluster_map)}')
-    print(f'movie_name_map: {len(movie_name_map)}')
-    print(f'movie_map: {len(movie_map)}')
-    print(f'centroids: {len(centroids)}')
 
-    print(f'=====>Populated data tables')
+
+    logger.info(f'cluster_map: {len(cluster_map)}')
+    logger.info(f'movie_name_map: {len(movie_name_map)}')
+    logger.info(f'movie_map: {len(movie_map)}')
+    logger.info(f'centroids: {len(centroids)}')
+
+    logger.info(f'=====>Populated data tables')
 
 
 def get_top_search_results(search_string="", limit=3):
@@ -98,7 +104,7 @@ def get_top_similar_movies_sub(movie_id):
     if cluster == -1:
         return []
 
-    print(f'Size of chosen movie cluster is {len(cluster_map[cluster])}')
+    logger.info(f'Size of chosen movie cluster is {len(cluster_map[cluster])}')
 
     if len(cluster_map[cluster]) > minimum_suggestions:
         movie_ids = list(cluster_map[cluster])
@@ -120,7 +126,7 @@ def get_top_similar_movies_sub(movie_id):
         else:
             cluster_union = cluster_map[cluster_1].union(cluster_map[cluster])
 
-        print(f'Size of cluster union is {len(cluster_union)}')
+        logger.info(f'Size of cluster union is {len(cluster_union)}')
 
         movie_ids = list(cluster_union)
         if movie_id in movie_ids: movie_ids.remove(movie_id)
@@ -136,7 +142,7 @@ def get_top_similar_movies_sub(movie_id):
 
 
 def get_recently_searched(limit):
-    movies = list(map(lambda m_id: movie_map[m_id], recently_searched.get_cache(limit+1)))
+    movies = list(map(lambda m_id: movie_map[m_id], recently_searched.get_cache(limit + 1)))
     return movies
 
 
@@ -158,3 +164,6 @@ def find_closest_centroids(cluster):
         elif distances[i] < distances[second_smallest_idx]:
             second_smallest_idx = i
     return smallest_idx, second_smallest_idx
+
+
+

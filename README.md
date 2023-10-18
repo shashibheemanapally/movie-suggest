@@ -20,7 +20,8 @@ It's based on the phrase: *"People who liked this movie also liked this movie...
 
 
 
-> It's about *The Similar Minded People** and Not about the **Similar Genres*
+![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/2d3744ce-6baa-4b99-b766-5ced10a35534)
+
 
 
 ### Tech stack
@@ -34,12 +35,14 @@ Dockerised Flask API with gunicorn as web interface deployed on Amazon elastic b
 **Data sets are provided by**: F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. https://doi.org/10.1145/2827872
 
 **Movie images are provided by**: The Movie Db https://www.themoviedb.org/
+![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/fffc3937-f709-4e10-b5d4-1af8b9b08029)
+
 
 ***
 ***
 ***
 ### More info
-The movie suggest engine inherently uses [Collaborative Filtering](https://en.wikipedia.org/wiki/Collaborative_filtering) a machine learning technique.
+The movie suggest engine inherently uses [Collaborative Filtering](https://en.wikipedia.org/wiki/Collaborative_filtering) a machine learning technique applied over real world user movie ratings.
 
 The notebooks used for training the machine learning models used in this application are:
 https://www.kaggle.com/code/shashibheemanapally/movie-suggest-generate-x-collaborative?scriptVersionId=142716701

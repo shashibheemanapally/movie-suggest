@@ -1,10 +1,10 @@
 
 # Movie Suggest
 
-Try it here:<br>
+Try it here:
 <br>
 
-[![name](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/f5a83d93-add2-49fc-81ab-bc8f8cd16331)](https://moviesuggest.net)
+[![name](https://github-production-user-asset-6210df.s3.amazonaws.com/62506255/276110557-f5a83d93-add2-49fc-81ab-bc8f8cd16331.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231018%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231018T060418Z&X-Amz-Expires=300&X-Amz-Signature=32313a58390fb5f4e3002a3a641b4fab44b3926f66c4cb63e32a2dd7182cada3&X-Amz-SignedHeaders=host&actor_id=62506255&key_id=0&repo_id=692259749)](https://moviesuggest.net)
 
 
 
@@ -41,4 +41,5 @@ The movie suggest engine inherently uses [Collaborative Filtering](https://en.wi
 
 The notebooks used for training the machine learning models used in this application are:
 https://www.kaggle.com/code/shashibheemanapally/movie-suggest-generate-x-collaborative?scriptVersionId=142716701
+<br>
 https://www.kaggle.com/code/shashibheemanapally/movie-suggest-cluster-centroids-st-deviation?scriptVersionId=143055433

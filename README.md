@@ -1,8 +1,14 @@
 
 # Movie Suggest
 
-Try it here:
-![Logo](![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/44d3941b-2bf5-40a2-b7d9-dac57fa721e4))
+Try it here:<br>
+<br>
+
+[![name](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/f5a83d93-add2-49fc-81ab-bc8f8cd16331)](https://moviesuggest.net)
+
+
+
+
 
 ### About
 A movie suggestion engine that recommends movies based on a movie that a user already watched and liked. Suggestions are based on the ratings given by other users.

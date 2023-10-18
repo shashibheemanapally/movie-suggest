@@ -35,7 +35,8 @@ Dockerised Flask API with gunicorn as web interface deployed on Amazon elastic b
 **Data sets are provided by**: F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. https://doi.org/10.1145/2827872
 
 **Movie images are provided by**: The Movie Db https://www.themoviedb.org/
-![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/fffc3937-f709-4e10-b5d4-1af8b9b08029)
+![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/3a995a3c-eb8c-4417-b4fd-c7798e10e9df)
+
 
 
 ***

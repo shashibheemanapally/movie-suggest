@@ -19,8 +19,8 @@ A movie suggestion engine that recommends movies based on a movie that a user al
 It's based on the phrase: *"People who liked this movie also liked this movie..."*
 
 
+![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/02205998-4f33-482a-9e3d-331f135cd6d9)
 
-![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/2d3744ce-6baa-4b99-b766-5ced10a35534)
 
 
 

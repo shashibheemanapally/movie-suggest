@@ -40,6 +40,9 @@ Dockerised Flask API with gunicorn as web interface deployed on Amazon elastic b
 
 
 
+
+
+
 ***
 ***
 ***
@@ -50,3 +53,9 @@ The notebooks used for training the machine learning models used in this applica
 https://www.kaggle.com/code/shashibheemanapally/movie-suggest-generate-x-collaborative?scriptVersionId=142716701
 <br>
 https://www.kaggle.com/code/shashibheemanapally/movie-suggest-cluster-centroids-st-deviation?scriptVersionId=143055433
+
+
+
+
+![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/a8ca301c-16b6-4c3e-9e1b-77661bd5f8c1)
+![image](https://github.com/shashibheemanapally/movie-suggest/assets/62506255/6f87d2b2-e319-4f40-af96-f98d3d3b819d)
